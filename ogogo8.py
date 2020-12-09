@@ -33,30 +33,35 @@ def auth(tries: int):
             print('у имени не правильная длина')
         count += 1
 
-
 auth(2)
 
-'''def pocupatel(his_money, eat):
-    eat_1 = int(catalogue[eat])
-    his_money1 = int(his_money)
-    c = his_money1 - eat_1
-    print(c)
 
 
-his_money1 = str(input('введите сколько у вас деняг: '))
-eat1 = input("введите что вы хотите купить: ")
-pocupatel(his_money1, eat1)
-'''
+def pocupatel(money, price):
+    if money < price:
+        return 'no money'
+    else:
+        result = money - price
+        return result
 
 
-def count_eat(change: int):
-    count = int(input("сколько еды вы хотите купить: "))
-    while count < change:
-        his_money1 = input('сколько у вас деняг: ')
-        change_food = input('веберите какую еды вы хотите купить: ')
-        change_food1 = int(change_food)
-        his_money = int(his_money1)
-        again = input('вы хотите еще что то купить?: ')
-        if again == "да":
-            count += 1
-count_eat(3)
+def choice(num_of_food):
+    list1 = []
+    for i in range(num_of_food):
+        new_element = input()
+        if new_element in catalogue:
+            list1.append(new_element)
+    return list1
+
+
+def order():
+    money = 1000
+    list1 = choice(3)
+    for food in list1:
+        price = catalogue[food]
+        if money >= price:
+            money = pocupatel(money, price)
+    print(money)
+
+
+order()
